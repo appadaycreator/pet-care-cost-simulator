@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ペット飼育費用シミュレーター | 犬・猫の年間コストを無料試算 | AppADayCreator</title>
+  <meta name="description" content="犬・猫・小動物の種類・体格・医療費を考慮したペット飼育費用を無料シミュレーション。初期費用から年間維持費まで、ペットを迎える前に知っておきたい費用の目安を提示します。">
+  <link rel="canonical" href="https://appadaycreator.github.io/pet-care-cost-simulator/">
+  <meta property="og:title" content="ペット飼育費用シミュレーター | 犬・猫の年間コストを無料試算">
+  <meta property="og:description" content="犬・猫・小動物の種類・体格・医療費を考慮したペット飼育費用を無料シミュレーション。初期費用から年間維持費まで、ペットを迎える前に知っておきたい費用の目安を提示します。">
+  <meta property="og:url" content="https://appadaycreator.github.io/pet-care-cost-simulator/">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ペット飼育費用シミュレーター",
+    "url": "https://appadaycreator.github.io/pet-care-cost-simulator/",
+    "description": "犬・猫・小動物の年間飼育費用を無料シミュレーション",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"},
+    "author": {"@type": "Organization", "name": "AppADayCreator", "url": "https://appadaycreator.github.io/"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://appadaycreator.github.io/"}, {"@type": "ListItem", "position": 2, "name": "ペット飼育費用シミュレーター", "item": "https://appadaycreator.github.io/pet-care-cost-simulator/"}]}
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TXQGZRF9');</script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8427583028015858" crossorigin="anonymous"></script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","s3t9vl8h3v");</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXQGZRF9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<header class="bg-amber-600 text-white py-4 px-4 shadow-md">
+  <div class="max-w-2xl mx-auto">
+    <div class="flex items-center gap-2">
+      <span class="text-3xl">🐾</span>
+      <div>
+        <h1 class="text-xl font-bold">ペット飼育費用シミュレーター</h1>
+        <p class="text-amber-200 text-sm">7つの質問でペットの年間費用を試算</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-2xl mx-auto px-4 py-8">
+  <div class="bg-white rounded-2xl shadow p-6 mb-6">
+    <p class="text-gray-600 text-sm leading-relaxed">犬の年間飼育費用は小型犬で約30〜50万円、大型犬で50〜100万円が目安。猫は約15〜30万円が目安です。ペットを迎える前に生涯にわたるコストを把握することが大切です（犬の平均寿命14年・猫15年）。</p>
+  </div>
+
+  <div id="quiz-section">
+    <div class="bg-white rounded-2xl shadow p-6 mb-4">
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-sm text-amber-700 font-semibold" id="step-label">質問 1 / 7</span>
+        <div class="w-32 bg-gray-200 rounded-full h-2">
+          <div id="progress-bar" class="bg-amber-500 h-2 rounded-full transition-all duration-300" style="width:14%"></div>
+        </div>
+      </div>
+      <div id="question-area"></div>
+    </div>
+    <div class="flex gap-3">
+      <button id="prev-btn" onclick="prevStep()" class="hidden flex-1 py-3 bg-gray-200 text-gray-700 rounded-xl font-semibold hover:bg-gray-300 transition">戻る</button>
+      <button id="next-btn" onclick="nextStep()" class="flex-1 py-3 bg-amber-500 text-white rounded-xl font-semibold hover:bg-amber-600 transition">次へ</button>
+    </div>
+  </div>
+
+  <div id="result-section" class="hidden">
+    <div class="bg-white rounded-2xl shadow p-6 mb-6">
+      <h2 class="text-xl font-bold text-amber-600 mb-4">ペット飼育費用シミュレーション結果</h2>
+      <div id="result-content"></div>
+    </div>
+
+    <!-- Affiliate: ペット用品 -->
+    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-4">
+      <h3 class="font-bold text-amber-800 mb-3">ペット用品・フード・グッズをAmazonで</h3>
+      <a href="https://www.amazon.co.jp/s?k=%E3%83%9A%E3%83%83%E3%83%88%E7%94%A8%E5%93%81&tag=appadaycrea0f-22" target="_blank" rel="noopener" class="block w-full text-center py-3 bg-amber-400 hover:bg-amber-500 text-gray-900 font-bold rounded-xl transition mb-3">Amazonでペット用品を見る</a>
+      <a href="https://www.amazon.co.jp/s?k=%E3%83%9A%E3%83%83%E3%83%88%E4%BF%9D%E9%99%BA&tag=appadaycrea0f-22" target="_blank" rel="noopener" class="block w-full text-center py-3 bg-orange-400 hover:bg-orange-500 text-white font-bold rounded-xl transition">Amazonでペット保険を比較する</a>
+    </div>
+
+    <button onclick="resetQuiz()" class="w-full py-3 bg-gray-200 text-gray-700 rounded-xl font-semibold hover:bg-gray-300 transition mb-6">もう一度診断する</button>
+  </div>
+
+  <!-- AdSense -->
+  <div class="my-6 text-center">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8427583028015858" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- Cross-links -->
+  <div class="bg-white rounded-2xl shadow p-6">
+    <h3 class="font-bold text-gray-700 mb-3">関連するペット・生活診断</h3>
+    <div class="grid grid-cols-1 gap-3">
+      <a href="https://appadaycreator.github.io/pet-insurance-check/" class="flex items-center gap-3 p-3 border border-gray-200 rounded-xl hover:border-amber-400 transition">
+        <span class="text-2xl">🛡️</span>
+        <div><p class="font-semibold text-sm">ペット保険診断</p><p class="text-xs text-gray-500">愛犬・愛猫に最適なペット保険を比較</p></div>
+      </a>
+      <a href="https://appadaycreator.github.io/pet-food-advisor/" class="flex items-center gap-3 p-3 border border-gray-200 rounded-xl hover:border-amber-400 transition">
+        <span class="text-2xl">🦴</span>
+        <div><p class="font-semibold text-sm">ペットフード選び診断</p><p class="text-xs text-gray-500">愛犬・愛猫に合ったフードを選ぶ</p></div>
+      </a>
+      <a href="https://appadaycreator.github.io/supplement-advisor/" class="flex items-center gap-3 p-3 border border-gray-200 rounded-xl hover:border-amber-400 transition">
+        <span class="text-2xl">💊</span>
+        <div><p class="font-semibold text-sm">サプリメント診断</p><p class="text-xs text-gray-500">ペットの健康維持に役立つサプリを診断</p></div>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer class="text-center text-xs text-gray-400 py-6 mt-4">
+  <p>© 2026 AppADayCreator | <a href="https://appadaycreator.github.io/privacy/" class="underline">プライバシーポリシー</a></p>
+</footer>
+
+<script>
+  const questions = [
+    {
+      id: 'pet_type',
+      text: '飼いたいペットの種類を教えてください',
+      options: ['犬（小型犬・5kg未満）', '犬（中型犬・5〜25kg）', '犬（大型犬・25kg以上）', '猫（室内飼い）', '猫（室内外）', '小動物（うさぎ・ハムスター等）', '鳥類・爬虫類等']
+    },
+    {
+      id: 'acquisition',
+      text: 'ペットをどこから迎える予定ですか？',
+      options: ['ブリーダー・ペットショップ（純血種）', 'ペットショップ（混血・一般）', '保護猫・保護犬の譲渡', '知人・SNSからの譲渡（無料）']
+    },
+    {
+      id: 'housing',
+      text: '住居の状況を教えてください',
+      options: ['一戸建て（ペット可）', 'ペット可のマンション・アパート', '現在ペット不可（引越し予定）']
+    },
+    {
+      id: 'food_grade',
+      text: 'フード・食事のグレードの希望を教えてください',
+      options: ['市販の一般フード（コスパ重視）', '国産・無添加フード（中〜高価格帯）', 'プレミアムフード・手作り食', '獣医師推奨の療法食']
+    },
+    {
+      id: 'grooming',
+      text: 'トリミング・グルーミングの予定はありますか？',
+      options: ['自宅でセルフケアのみ', '年2〜4回サロンを利用', '月1〜2回定期的にサロン利用', '必要ないペット（短毛猫等）']
+    },
+    {
+      id: 'insurance',
+      text: 'ペット保険への加入を検討していますか？',
+      options: ['ペット保険に加入予定', 'まだ検討中', '保険には加入しない（自費で対応）', '既に加入している']
+    },
+    {
+      id: 'vet_frequency',
+      text: '動物病院への通院頻度の想定はどのくらいですか？',
+      options: ['年1回の健康診断のみ', '年2〜3回（ワクチン・定期検診）', '月1回程度（既往症あり・高齢ペット）', 'できるだけ費用を抑えたい']
+    }
+  ];
+
+  let currentStep = 0;
+  let answers = {};
+
+  function renderQuestion() {
+    const q = questions[currentStep];
+    document.getElementById('step-label').textContent = `質問 ${currentStep + 1} / ${questions.length}`;
+    document.getElementById('progress-bar').style.width = `${((currentStep + 1) / questions.length) * 100}%`;
+    document.getElementById('prev-btn').classList.toggle('hidden', currentStep === 0);
+    document.getElementById('next-btn').textContent = currentStep === questions.length - 1 ? '診断する' : '次へ';
+
+    let html = `<p class="font-semibold text-gray-800 mb-4">${q.text}</p><div class="space-y-2">`;
+    q.options.forEach(opt => {
+      const checked = answers[q.id] === opt ? 'checked' : '';
+      html += `<label class="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer hover:border-amber-400 transition has-[:checked]:border-amber-500 has-[:checked]:bg-amber-50">
+        <input type="radio" name="${q.id}" value="${opt}" ${checked} class="accent-amber-500"> <span class="text-sm">${opt}</span>
+      </label>`;
+    });
+    html += '</div>';
+    document.getElementById('question-area').innerHTML = html;
+  }
+
+  function saveAnswer() {
+    const el = document.querySelector(`input[name="${questions[currentStep].id}"]:checked`);
+    if (!el) { alert('選択してください'); return false; }
+    answers[questions[currentStep].id] = el.value;
+    return true;
+  }
+
+  function nextStep() {
+    if (!saveAnswer()) return;
+    if (currentStep < questions.length - 1) { currentStep++; renderQuestion(); }
+    else showResult();
+  }
+
+  function prevStep() {
+    if (currentStep > 0) { currentStep--; renderQuestion(); }
+  }
+
+  function calcCosts() {
+    let initialCost = 0;
+    let annualCost = 0;
+
+    // 初期費用（ペット代）
+    const acquisitionMap = {
+      'ブリーダー・ペットショップ（純血種）': 20,
+      'ペットショップ（混血・一般）': 10,
+      '保護猫・保護犬の譲渡': 1,
+      '知人・SNSからの譲渡（無料）': 0
+    };
+    initialCost += acquisitionMap[answers.acquisition] || 10;
+
+    // 用品初期費用
+    const typeInitial = {
+      '犬（小型犬・5kg未満）': 8,
+      '犬（中型犬・5〜25kg）': 10,
+      '犬（大型犬・25kg以上）': 15,
+      '猫（室内飼い）': 6,
+      '猫（室内外）': 5,
+      '小動物（うさぎ・ハムスター等）': 3,
+      '鳥類・爬虫類等': 5
+    };
+    initialCost += typeInitial[answers.pet_type] || 8;
+
+    // 年間フード代
+    const foodMap = {
+      '市販の一般フード（コスパ重視）': 4,
+      '国産・無添加フード（中〜高価格帯）': 8,
+      'プレミアムフード・手作り食': 15,
+      '獣医師推奨の療法食': 20
+    };
+    annualCost += foodMap[answers.food_grade] || 8;
+
+    // ペットによる補正
+    if (answers.pet_type.includes('大型犬')) annualCost *= 1.8;
+    else if (answers.pet_type.includes('中型犬')) annualCost *= 1.3;
+    else if (answers.pet_type.includes('小動物')) annualCost *= 0.4;
+
+    // トリミング
+    const groomMap = {
+      '自宅でセルフケアのみ': 0.5,
+      '年2〜4回サロンを利用': 3,
+      '月1〜2回定期的にサロン利用': 12,
+      '必要ないペット（短毛猫等）': 0
+    };
+    annualCost += groomMap[answers.grooming] || 2;
+
+    // 医療費
+    const vetMap = {
+      '年1回の健康診断のみ': 2,
+      '年2〜3回（ワクチン・定期検診）': 4,
+      '月1回程度（既往症あり・高齢ペット）': 15,
+      'できるだけ費用を抑えたい': 2
+    };
+    annualCost += vetMap[answers.vet_frequency] || 4;
+
+    // 保険
+    if (answers.insurance === 'ペット保険に加入予定' || answers.insurance === '既に加入している') annualCost += 4;
+
+    // その他（トイレ用品・おもちゃ・爪切り等）
+    annualCost += 3;
+
+    return { initialCost: Math.round(initialCost), annualCost: Math.round(annualCost) };
+  }
+
+  function showResult() {
+    document.getElementById('quiz-section').classList.add('hidden');
+    document.getElementById('result-section').classList.remove('hidden');
+
+    const { initialCost, annualCost } = calcCosts();
+    const lifespan = answers.pet_type.includes('猫') ? 15 : answers.pet_type.includes('小動物') ? 5 : 14;
+    const lifetimeCost = initialCost + annualCost * lifespan;
+
+    const noInsurance = answers.insurance === '保険には加入しない（自費で対応）';
+
+    const advice = [];
+    if (noInsurance) advice.push('ペット保険なしの場合、重篤な病気・手術で30〜100万円の出費になることも。緊急時のための積立金（月5,000〜10,000円）も検討しましょう。');
+    advice.push(`${answers.pet_type.split('（')[0]}の平均寿命${lifespan}年間の生涯費用は約${lifetimeCost}万円が目安です。長期的な資金計画を立てておきましょう。`);
+    if (answers.acquisition === 'ブリーダー・ペットショップ（純血種）') advice.push('純血種は遺伝疾患リスクが高い場合があります。ブリーダー選びは実績・評判を十分確認してください。');
+    advice.push('フードの定期購入（サブスク）やふるさと納税でペット用品を調達することで年間1〜3万円の節約が可能です。');
+    advice.push('避妊・去勢手術（3〜10万円）は病気予防にもなり、長期的な医療費削減につながります。');
+
+    const html = `
+      <div class="grid grid-cols-1 gap-4 mb-5">
+        <div class="bg-amber-50 border-l-4 border-amber-500 rounded-xl p-4">
+          <p class="text-sm text-amber-800 font-semibold mb-1">初期費用（目安）</p>
+          <p class="text-3xl font-bold text-amber-700">約${initialCost}万円〜</p>
+          <p class="text-xs text-gray-500">ペット代 + 用品・ケージ・健康診断等</p>
+        </div>
+        <div class="bg-orange-50 border-l-4 border-orange-500 rounded-xl p-4">
+          <p class="text-sm text-orange-800 font-semibold mb-1">年間維持費（目安）</p>
+          <p class="text-3xl font-bold text-orange-700">約${annualCost}万円/年</p>
+          <p class="text-sm text-gray-500">月換算：約${Math.round(annualCost / 12 * 10) / 10}万円/月</p>
+        </div>
+        <div class="bg-red-50 border-l-4 border-red-400 rounded-xl p-4">
+          <p class="text-sm text-red-800 font-semibold mb-1">生涯費用（${lifespan}年間の目安）</p>
+          <p class="text-3xl font-bold text-red-700">約${lifetimeCost}万円〜</p>
+        </div>
+      </div>
+      <h3 class="font-bold text-gray-700 mb-3">ペット飼育アドバイス</h3>
+      <div class="space-y-3">
+        ${advice.map(a => `<div class="flex gap-3 p-3 bg-gray-50 rounded-xl"><span class="text-xl">🐾</span><p class="text-sm text-gray-700">${a}</p></div>`).join('')}
+      </div>`;
+
+    document.getElementById('result-content').innerHTML = html;
+  }
+
+  function resetQuiz() {
+    currentStep = 0; answers = {};
+    document.getElementById('quiz-section').classList.remove('hidden');
+    document.getElementById('result-section').classList.add('hidden');
+    renderQuestion();
+  }
+
+  renderQuestion();
+</script>
+</body>
+</html>
